@@ -1,0 +1,18 @@
+== README
+
+= iphone availability checker
+
+This is a simple script to check for iphone availability in german stores
+
+install gems with:
+
+    gem install mail
+    gem install httparty
+
+usage:
+
+    ruby iphone_6_checker.rb mailusername mailpassword emailaddress_of_recipient
+
+example:
+
+    ruby iphone_6_checker.rb user1 pass1 notify@example.com

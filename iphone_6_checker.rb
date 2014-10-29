@@ -44,18 +44,18 @@ Mail.defaults do
 end
 
 
-response = HTTParty.get(json_url)
-avail =  JSON.parse(response.to_json)
+response      = HTTParty.get(json_url)
+response_hash = JSON.parse(response.to_json)
 
 
-time = Time.at(avail['updated']/1000)
+time = Time.at(response_hash['updated']/1000)
 
-success = !stores.keys.any?{|s| avail[s][model] }
+success = stores.keys.any?{|s| response_hash[s][model] }
 
 if success
   message = "Iphone 6 available:\n"
   stores.keys.each{|s|
-    message += "#{stores[s]}: #{avail[s][model]}\n"
+    message += "#{stores[s]}: #{response_hash[s][model]}\n"
   }
   message += "Time: #{time}\n"
   message += "URL: #{order_url}\n"
